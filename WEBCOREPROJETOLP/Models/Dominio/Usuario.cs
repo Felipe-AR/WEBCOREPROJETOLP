@@ -8,11 +8,14 @@ using System.Threading.Tasks;
 
 namespace WEBCOREPROJETOLP.Models.Dominio
 {
-    public class PokemonTipo
+    public class Usuario
     {
         public int id { get; set; }
-        public string descricao { get; set; }
+        public Jogador jogador { get; set; }
+        public int jogadorID { get; set; }
+        public string email { get; set; }
+        public string usuario { get; set; }
+        public string senha { get; set; }
 
-        public ICollection<Pokemon> pokemons { get; set; }
     }
 }
