@@ -13,6 +13,7 @@ namespace WEBCOREPROJETOLP.Models.Dominio
     {
         public int id { get; set; }
         public Usuario usuario { get; set; }
+        public int usuarioID { get; set; }
         public Mochila mochila { get; set; }
         public string nome { get; set; }
         public string cidade { get; set; }

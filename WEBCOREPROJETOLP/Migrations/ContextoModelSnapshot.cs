@@ -67,7 +67,13 @@ namespace WEBCOREPROJETOLP.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("usuarioID")
+                        .HasColumnType("int");
+
                     b.HasKey("id");
+
+                    b.HasIndex("usuarioID")
+                        .IsUnique();
 
                     b.ToTable("Jogadores");
                 });
@@ -140,9 +146,6 @@ namespace WEBCOREPROJETOLP.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("jogadorID")
-                        .HasColumnType("int");
-
                     b.Property<string>("senha")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -154,9 +157,6 @@ namespace WEBCOREPROJETOLP.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.HasKey("id");
-
-                    b.HasIndex("jogadorID")
-                        .IsUnique();
 
                     b.ToTable("Usuarios");
                 });
@@ -178,6 +178,17 @@ namespace WEBCOREPROJETOLP.Migrations
                     b.Navigation("mochila");
 
                     b.Navigation("pokemon");
+                });
+
+            modelBuilder.Entity("WEBCOREPROJETOLP.Models.Dominio.Jogador", b =>
+                {
+                    b.HasOne("WEBCOREPROJETOLP.Models.Dominio.Usuario", "usuario")
+                        .WithOne("jogador")
+                        .HasForeignKey("WEBCOREPROJETOLP.Models.Dominio.Jogador", "usuarioID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("usuario");
                 });
 
             modelBuilder.Entity("WEBCOREPROJETOLP.Models.Dominio.Mochila", b =>
@@ -202,22 +213,9 @@ namespace WEBCOREPROJETOLP.Migrations
                     b.Navigation("tipo");
                 });
 
-            modelBuilder.Entity("WEBCOREPROJETOLP.Models.Dominio.Usuario", b =>
-                {
-                    b.HasOne("WEBCOREPROJETOLP.Models.Dominio.Jogador", "jogador")
-                        .WithOne("usuario")
-                        .HasForeignKey("WEBCOREPROJETOLP.Models.Dominio.Usuario", "jogadorID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("jogador");
-                });
-
             modelBuilder.Entity("WEBCOREPROJETOLP.Models.Dominio.Jogador", b =>
                 {
                     b.Navigation("mochila");
-
-                    b.Navigation("usuario");
                 });
 
             modelBuilder.Entity("WEBCOREPROJETOLP.Models.Dominio.Mochila", b =>
@@ -233,6 +231,11 @@ namespace WEBCOREPROJETOLP.Migrations
             modelBuilder.Entity("WEBCOREPROJETOLP.Models.Dominio.PokemonTipo", b =>
                 {
                     b.Navigation("pokemons");
+                });
+
+            modelBuilder.Entity("WEBCOREPROJETOLP.Models.Dominio.Usuario", b =>
+                {
+                    b.Navigation("jogador");
                 });
 #pragma warning restore 612, 618
         }

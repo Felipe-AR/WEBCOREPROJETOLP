@@ -12,7 +12,6 @@ namespace WEBCOREPROJETOLP.Models.Dominio
     {
         public int id { get; set; }
         public Jogador jogador { get; set; }
-        public int jogadorID { get; set; }
         public string email { get; set; }
         public string usuario { get; set; }
         public string senha { get; set; }

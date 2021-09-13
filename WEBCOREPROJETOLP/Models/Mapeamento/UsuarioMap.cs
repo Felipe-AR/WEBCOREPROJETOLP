@@ -20,7 +20,7 @@ namespace WEBCOREPROJETOLP.Models.Mapeamento
 
             builder.HasOne<Jogador>(usuario => usuario.jogador)
                 .WithOne(jogador => jogador.usuario)
-                .HasForeignKey<Usuario>(jogador => jogador.jogadorID)
+                .HasForeignKey<Jogador>(jogador => jogador.usuarioID)
                 .OnDelete(DeleteBehavior.NoAction);
 
             builder.ToTable("Usuarios");
